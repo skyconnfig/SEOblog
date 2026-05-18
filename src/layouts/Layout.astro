@@ -17,10 +17,10 @@ const {
   lang = "zh-CN",
 } = Astro.props;
 
-const site = "https://mrguo.life";
+const site = "https://lxs.best";
 const fullUrl = canonical ? new URL(canonical, site).href : Astro.url.href;
-const keywords = "果叔, Mr Guo, AI 产品经理, 数字营销, PLG 增长, 独立开发者, AI SaaS";
-const author = "Mr'Guo";
+const keywords = "LXSBest, AI 产品经理, 数字营销, PLG 增长, 独立开发者, AI SaaS";
+const author = "LXSBest";
 ---
 
 <!doctype html>
@@ -49,8 +49,8 @@ const author = "Mr'Guo";
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, site).href} />
-    <meta name="twitter:site" content="zhangguo" />
-    <meta name="twitter:creator" content="zhangguo" />
+    <meta name="twitter:site" content="DarkTor161430" />
+    <meta name="twitter:creator" content="DarkTor161430" />
 
     <!-- Canonical -->
     <link rel="canonical" href={fullUrl} />
@@ -59,12 +59,12 @@ const author = "Mr'Guo";
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
-      name: "果叔",
+      name: "LXSBest",
       url: site,
       description: "PLG增长信徒 / 独立开发者 / AI产品经理",
       sameAs: [
-        "https://twitter.com/gzzhangguo",
-        "https://github.com/mrzhangguoguo",
+        "https://x.com/DarkTor161430",
+        "https://github.com/skyconnfig",
       ],
     })}>
     </script>
