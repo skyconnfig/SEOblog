@@ -1,0 +1,253 @@
+---
+const { title, fileType, fileSize, downloadPath, priceLabel } = Astro.props;
+---
+
+<!-- Download Tip Modal -->
+<div id="download-modal" class="download-modal">
+  <div class="download-modal-overlay"></div>
+  <div class="download-modal-content">
+    <button type="button" class="download-modal-close" aria-label="Close">&times;</button>
+
+    <!-- Resource summary -->
+    <div class="download-modal-header">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="download-modal-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <h3 class="download-modal-title">{title}</h3>
+      <p class="download-modal-meta">{fileType} &middot; {fileSize}</p>
+    </div>
+
+    <div class="download-modal-divider"></div>
+
+    <!-- Tip section -->
+    <p class="download-modal-label">Support with a tip to unlock download</p>
+    <div class="download-modal-qr">
+      <img src="/assets/social/payment-qr.png" alt="WeChat Pay QR" class="download-qr-image" />
+    </div>
+    <p class="download-modal-hint">Scan with WeChat to send your tip</p>
+
+    <button id="download-reveal-btn" class="download-reveal-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      I've Tipped — Unlock Download
+    </button>
+
+    <a id="download-link" href={downloadPath} download class="download-link hidden" target="_blank">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      Download Now
+    </a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var modal = document.getElementById("download-modal");
+    if (!modal) return;
+
+    var closeBtn = modal.querySelector(".download-modal-close");
+    var overlay = modal.querySelector(".download-modal-overlay");
+    var revealBtn = document.getElementById("download-reveal-btn");
+    var downloadLink = document.getElementById("download-link");
+
+    function open() {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+      if (revealBtn) revealBtn.style.display = "";
+      if (downloadLink) downloadLink.classList.add("hidden");
+    }
+
+    function close() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    // Called from the detail page's download button
+    window.openDownloadModal = open;
+
+    closeBtn?.addEventListener("click", close);
+    overlay?.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) close();
+    });
+
+    // Reveal download link on "I've Tipped" click
+    if (revealBtn && downloadLink) {
+      revealBtn.addEventListener("click", function () {
+        revealBtn.style.display = "none";
+        downloadLink.classList.remove("hidden");
+      });
+    }
+  })();
+</script>
+
+<style>
+  .download-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .download-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .download-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+  .download-modal-content {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  :global(.dark) .download-modal-content {
+    background: #0f1b2d;
+  }
+  .download-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #f0f0f5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #666;
+    transition: background 0.2s;
+  }
+  :global(.dark) .download-modal-close {
+    background: #2c3542;
+    color: #aaa;
+  }
+  .download-modal-close:hover {
+    background: #e0e0e8;
+  }
+  :global(.dark) .download-modal-close:hover {
+    background: #3f4a5a;
+  }
+  .download-modal-header {
+    margin-bottom: 8px;
+  }
+  .download-modal-icon {
+    display: inline-flex;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(45, 109, 195, 0.1);
+    color: var(--color-primary);
+    margin-bottom: 12px;
+  }
+  :global(.dark) .download-modal-icon {
+    background: rgba(45, 109, 195, 0.2);
+  }
+  .download-modal-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #19222f;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  :global(.dark) .download-modal-title {
+    color: #e8e8f0;
+  }
+  .download-modal-meta {
+    font-size: 13px;
+    color: #92a1b7;
+  }
+  :global(.dark) .download-modal-meta {
+    color: #7a8ba5;
+  }
+  .download-modal-divider {
+    height: 1px;
+    background: #dfe4ed;
+    margin: 20px 0;
+  }
+  :global(.dark) .download-modal-divider {
+    background: #2c3542;
+  }
+  .download-modal-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3f4a5a;
+    margin-bottom: 16px;
+  }
+  :global(.dark) .download-modal-label {
+    color: #c5cedb;
+  }
+  .download-modal-qr {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .download-qr-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    border: 2px solid #dfe4ed;
+    padding: 4px;
+    background: white;
+  }
+  :global(.dark) .download-qr-image {
+    border-color: #2c3542;
+    background: #1a2536;
+  }
+  .download-modal-hint {
+    font-size: 12px;
+    color: #92a1b7;
+    margin-bottom: 20px;
+  }
+  :global(.dark) .download-modal-hint {
+    color: #7a8ba5;
+  }
+  .download-reveal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    border: none;
+    background: var(--color-primary);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .download-reveal-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  .download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    background: #22c55e;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .download-link:hover {
+    background: #16a34a;
+    transform: translateY(-1px);
+  }
+  .download-link.hidden {
+    display: none;
+  }
+</style>
