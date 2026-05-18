@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "publish": "node scripts/publish.js",
-    "dev-server": "node scripts/dev-server.js"
+    "dev-server": "node scripts/dev-server.js",
+    "admin": "node scripts/admin-server.js"
   },
   "dependencies": {
     "astro": "^5.7.0",

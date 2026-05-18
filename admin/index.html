@@ -3,310 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LXSBest Content Publisher</title>
+<title>LXSBest Admin</title>
 <style>
-  :root {
-    --bg: #f4f6fa;
-    --card: #fff;
-    --border: #e2e8f0;
-    --text: #1a2332;
-    --text2: #6b7a95;
-    --primary: #2d6dc3;
-    --success: #22c55e;
-    --warn: #f59e0b;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    padding: 20px;
-  }
-  .container { max-width: 960px; margin: 0 auto; }
-  header {
-    background: linear-gradient(135deg, var(--primary), #1a4f8a);
-    color: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 24px;
-  }
-  header h1 { font-size: 24px; margin-bottom: 4px; }
-  header p { opacity: 0.85; font-size: 14px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
-  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-  }
-  .card h2 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-  .card h2 .icon { width: 22px; height: 22px; }
-  .card p, .card li { font-size: 14px; color: var(--text2); }
-  .card ul { padding-left: 18px; }
-  .card ul li { margin-bottom: 6px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 10px 20px; border-radius: 8px; border: none;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    text-decoration: none; transition: all 0.2s;
-    margin-top: 12px;
-  }
-  .btn-primary { background: var(--primary); color: white; }
-  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-  .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
-  .btn-outline:hover { background: var(--primary); color: white; }
-  .btn-success { background: var(--success); color: white; }
-  .btn-success:hover { opacity: 0.9; transform: translateY(-1px); }
-  .steps { list-style: none; padding: 0 !important; }
-  .steps li {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 12px 0; border-bottom: 1px solid var(--border);
-    font-size: 14px; color: var(--text);
-  }
-  .steps li:last-child { border-bottom: none; }
-  .step-num {
-    flex-shrink: 0;
-    width: 24px; height: 24px; border-radius: 50%;
-    background: var(--primary); color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700;
-  }
-  .step-num.green { background: var(--success); }
-  code {
-    background: #eef1f7; padding: 2px 8px; border-radius: 4px;
-    font-size: 13px; color: #e25555;
-  }
-  .full { grid-column: 1 / -1; }
-  .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
-  .stat {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px 20px; flex: 1; min-width: 120px;
-    text-align: center;
-  }
-  .stat .num { font-size: 28px; font-weight: 700; color: var(--primary); }
-  .stat .label { font-size: 12px; color: var(--text2); }
-  .footer { text-align: center; font-size: 12px; color: var(--text2); padding: 24px 0; }
-  .code-block {
-    background: #1a2332; color: #e2e8f0; border-radius: 8px;
-    padding: 16px; font-size: 13px; font-family: monospace;
-    overflow-x: auto; margin: 8px 0;
-  }
-  .tag {
-    display: inline-block; padding: 2px 10px; border-radius: 12px;
-    font-size: 11px; font-weight: 600;
-  }
-  .tag-amber { background: #fef3c7; color: #92400e; }
-  .tag-green { background: #dcfce7; color: #166534; }
-  .tag-purple { background: #f3e8ff; color: #6b21a8; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f0f2f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; max-width: 480px; width: 100%; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  p { color: #64748b; font-size: 14px; margin: 8px 0 24px; }
+  .status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 20px; }
+  .status.online { background: #dcfce7; color: #166534; }
+  .status.offline { background: #fee2e2; color: #991b1b; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 10px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all .2s; }
+  .btn-primary { background: #2d6dc3; color: #fff; }
+  .btn-primary:hover { background: #1a5aad; transform: translateY(-1px); }
+  .btn-success { background: #22c55e; color: #fff; }
+  .btn-success:hover { background: #16a34a; transform: translateY(-1px); }
+  .links { margin-top: 20px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .links a { color: #2d6dc3; font-size: 13px; text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .cmd { background: #1a2332; color: #e2e8f0; padding: 8px 16px; border-radius: 8px; font-family: monospace; font-size: 13px; margin: 12px 0; display: inline-block; }
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>LXSBest 内容发布管理</h1>
-    <p>一键创建文章、上传资源、部署到 GitHub</p>
-  </header>
+  <div class="card">
+    <h1>LXSBest Admin</h1>
+    <p>Content management dashboard</p>
 
-  <!-- Stats -->
-  <div class="stat-row">
-    <div class="stat">
-      <div class="num" id="blog-count">-</div>
-      <div class="label">文章</div>
+    <div id="status-indicator" class="status offline">● Server Offline</div>
+
+    <a id="launch-btn" class="btn btn-primary" style="pointer-events:none;opacity:.5;">Launch Admin →</a>
+
+    <div class="links">
+      <a href="http://localhost:4326" target="_blank">Site Preview</a>
+      <a href="http://localhost:3002" target="_blank">Admin Server</a>
     </div>
-    <div class="stat">
-      <div class="num" id="resource-count">-</div>
-      <div class="label">资源</div>
-    </div>
-    <div class="stat">
-      <div class="num" id="deploy-status">-</div>
-      <div class="label">部署状态</div>
-    </div>
+
+    <p style="margin-top: 24px; font-size: 12px; color: #94a3b8;">
+      Start server: <span class="cmd">npm run admin</span>
+    </p>
   </div>
 
-  <!-- Quick Actions -->
-  <div class="grid">
-    <div class="card">
-      <h2>
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        写文章
-      </h2>
-      <p>在 <code>src/content/blog/</code> 下创建 <code>.md</code> 文件，支持 Markdown 全文</p>
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <a href="javascript:void(0)" class="btn btn-primary" onclick="openBlogDir()">打开博客目录</a>
-        <a href="http://localhost:3002" target="_blank" class="btn btn-outline">🖼️ 图片管理</a>
-      </div>
-    </div>
+  <script>
+    (async function() {
+      const status = document.getElementById('status-indicator');
+      const btn = document.getElementById('launch-btn');
 
-    <div class="card">
-      <h2>
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        上传资源
-      </h2>
-      <p>ZIP/PDF 文件放 <code>public/downloads/</code>，注册到 <code>src/data/resources.ts</code></p>
-      <a href="javascript:void(0)" class="btn btn-outline" onclick="openDownDir()">打开下载目录</a>
-    </div>
+      // Check if admin server is running
+      try {
+        const res = await fetch('http://localhost:3002/', { mode: 'no-cors' });
+        status.className = 'status online';
+        status.innerHTML = '● Server Online';
+        status.style.background = '#dcfce7';
+        status.style.color = '#166534';
+        btn.href = 'http://localhost:3002/';
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+        btn.textContent = 'Open Admin →';
+      } catch {
+        // Server not running, show start instructions
+        status.className = 'status offline';
+        status.innerHTML = '● Server Offline';
+        status.style.background = '#fee2e2';
+        status.style.color = '#991b1b';
+        btn.textContent = 'Start Server First';
 
-    <div class="card full">
-      <h2>
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        一键部署
-      </h2>
-      <p>自动构建网站、提交 Git、推送到 GitHub</p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <button class="btn btn-success" onclick="runPublish()">运行发布工具</button>
-        <a href="javascript:void(0)" class="btn btn-outline" onclick="quickDeploy()">快速部署</a>
-        <a href="http://localhost:3002" target="_blank" class="btn btn-outline">🖼️ 图片管理器</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- How to: Workflow Guide -->
-  <div class="card full" style="margin-bottom: 16px;">
-    <h2>操作指南</h2>
-
-    <h3 style="margin: 16px 0 8px; font-size: 15px;">📝 发布文章</h3>
-    <ol class="steps">
-      <li>
-        <span class="step-num">1</span>
-        <div><strong>创建 .md 文件</strong> — 在 <code>src/content/blog/</code> 下新建文件，文件名即 URL slug（如 <code>my-article.md</code>）</div>
-      </li>
-      <li>
-        <span class="step-num">2</span>
-        <div><strong>填写 Frontmatter</strong> — 文件顶部用 <code>---</code> 包裹元数据</div>
-      </li>
-      <li>
-        <span class="step-num green">✓</span>
-        <div>运行 <code>node scripts/publish.js</code> 选择 3 部署，或手动 <code>git push</code></div>
-      </li>
-    </ol>
-
-    <div class="code-block">---
-title: "你的文章标题"
-description: "SEO 描述"
-date: 2026-05-20
-tags: ["PLG", "SaaS"]
-draft: false
----
-
-文章正文 Markdown...</div>
-
-    <h3 style="margin: 16px 0 8px; font-size: 15px;">📦 上传资源</h3>
-    <ol class="steps">
-      <li>
-        <span class="step-num">1</span>
-        <div>把 <strong>ZIP/PDF</strong> 文件放入 <code>public/downloads/</code></div>
-      </li>
-      <li>
-        <span class="step-num">2</span>
-        <div>把 <strong>封面图</strong> 放入 <code>public/assets/resource-previews/&lt;slug&gt;/</code></div>
-      </li>
-      <li>
-        <span class="step-num">3</span>
-        <div>编辑 <code>src/data/resources.ts</code>，添加资源条目</div>
-      </li>
-      <li>
-        <span class="step-num green">✓</span>
-        <div>部署到 GitHub</div>
-      </li>
-    </ol>
-
-    <h3 style="margin: 16px 0 8px; font-size: 15px;">🚀 部署</h3>
-    <ol class="steps">
-      <li>
-        <span class="step-num">1</span>
-        <div>运行 <code>publish.cmd</code>（双击）或 <code>node scripts/publish.js</code></div>
-      </li>
-      <li>
-        <span class="step-num">2</span>
-        <div>选择选项 <strong>3: Build &amp; deploy to GitHub</strong></div>
-      </li>
-      <li>
-        <span class="step-num">3</span>
-        <div>输入 commit message，自动构建并推送</div>
-      </li>
-    </ol>
-  </div>
-
-  <!-- File structure -->
-  <div class="card full">
-    <h2>项目结构（相关部分）</h2>
-    <div class="code-block" style="font-size: 12px; line-height: 1.8;">
-src/
-├── content/blog/          ← 博客文章 (.md)
-│   └── plg-growth-strategy.md
-├── data/
-│   └── resources.ts       ← 资源数据（添加新资源在这里）
-├── pages/
-│   ├── resources/
-│   │   ├── index.astro    ← 资源列表页
-│   │   └── [slug].astro   ← 资源详情页（自动生成）
-│   └── blog/
-│       ├── index.astro    ← 博客列表页
-│       └── [slug].astro   ← 文章详情页
-public/
-├── downloads/             ← 存放 ZIP/PDF 文件
-└── assets/
-    └── resource-previews/  ← 资源封面图
-scripts/
-├── publish.js             ← 发布自动化脚本
-└── publish.cmd            ← 双击运行（Windows）</div>
-  </div>
-
-  <div class="footer">
-    LXSBest Content Publisher &mdash; 编辑 admin/index.html 可自定义此页面
-  </div>
-</div>
-
-<script>
-  // Load stats
-  fetch('/src/content/blog/')
-    .then(r => r.text()).catch(() => {});
-  fetch('/src/data/resources.ts')
-    .then(r => r.text()).catch(() => {});
-
-  // Reliable: load from known structure
-  (function() {
-    var pages = ['主页', '资源', '作品', '关于', '博客'];
-    var blogCountEl = document.getElementById('blog-count');
-    var resCountEl = document.getElementById('resource-count');
-    var deployEl = document.getElementById('deploy-status');
-
-    // We can't read the server filesystem from browser directly.
-    // But we show the currently known counts from the codebase.
-    blogCountEl.textContent = '1';
-    resCountEl.textContent = '10';
-    deployEl.innerHTML = '<span style="color: var(--success);">✓ 已部署</span>';
-  })();
-
-  // Open directories via file:// protocol
-  function openBlogDir() {
-    var p = window.location.pathname;
-    // Go up from admin/ to project root, then to src/content/blog/
-    var base = p.substring(0, p.lastIndexOf('/') + 1);
-    window.open('vscode://file/' + encodeURIComponent(base + '../src/content/blog'), '_blank');
-    window.open('file:///' + encodeURIComponent(base + '../src/content/blog').replace(/%3A/g, ':').replace(/%2F/g, '/'), '_blank');
-  }
-
-  function openDownDir() {
-    var p = window.location.pathname;
-    var base = p.substring(0, p.lastIndexOf('/') + 1);
-    window.open('file:///' + encodeURIComponent(base + '../public/downloads').replace(/%3A/g, ':').replace(/%2F/g, '/'), '_blank');
-  }
-
-  function runPublish() {
-    // Try to open the publish.cmd
-    var p = window.location.pathname;
-    var base = p.substring(0, p.lastIndexOf('/') + 1);
-    window.open('file:///' + encodeURIComponent(base + '../publish.cmd').replace(/%3A/g, ':').replace(/%2F/g, '/'), '_blank');
-  }
-
-  function quickDeploy() {
-    var msg = prompt('Commit message:', 'update: content update');
-    if (!msg) return;
-    alert('请在终端运行:\n\ncd ' + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1) + '\nnpx astro build\ngit add src/ public/\ngit commit -m "' + msg + '"\ngit push');
-  }
-</script>
+        // Try again in 2 seconds (server might be starting)
+        setTimeout(async () => {
+          try {
+            await fetch('http://localhost:3002/', { mode: 'no-cors' });
+            location.reload();
+          } catch {}
+        }, 2000);
+      }
+    })();
+  </script>
 </body>
 </html>
