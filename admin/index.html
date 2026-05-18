@@ -133,7 +133,10 @@
         写文章
       </h2>
       <p>在 <code>src/content/blog/</code> 下创建 <code>.md</code> 文件，支持 Markdown 全文</p>
-      <a href="javascript:void(0)" class="btn btn-primary" onclick="openBlogDir()">打开博客目录</a>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a href="javascript:void(0)" class="btn btn-primary" onclick="openBlogDir()">打开博客目录</a>
+        <a href="http://localhost:3002" target="_blank" class="btn btn-outline">🖼️ 图片管理</a>
+      </div>
     </div>
 
     <div class="card">
@@ -154,6 +157,7 @@
       <div style="display: flex; gap: 12px; flex-wrap: wrap;">
         <button class="btn btn-success" onclick="runPublish()">运行发布工具</button>
         <a href="javascript:void(0)" class="btn btn-outline" onclick="quickDeploy()">快速部署</a>
+        <a href="http://localhost:3002" target="_blank" class="btn btn-outline">🖼️ 图片管理器</a>
       </div>
     </div>
   </div>
