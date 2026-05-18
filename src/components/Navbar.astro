@@ -1,0 +1,389 @@
+---
+const { lang = "zh-CN" } = Astro.props;
+
+const isZh = lang === "zh-CN";
+
+const navLinks = [
+  { href: "/", labelZh: "首页", labelEn: "Home" },
+  { href: "/blog", labelZh: "文章", labelEn: "Writing" },
+  { href: "/resources", labelZh: "资源", labelEn: "Resources" },
+  { href: "/works", labelZh: "作品", labelEn: "Works" },
+  { href: "/about", labelZh: "关于", labelEn: "About" },
+];
+---
+
+<!-- Spacer for fixed header height -->
+<div class="relative w-full h-16 sm:h-20 opacity-0 pointer-events-none" />
+
+<header id="header" class="fixed top-2 sm:top-4 z-50 w-full px-3 sm:px-4 lg:px-6">
+  <div
+    id="site-container"
+    class="flex items-center justify-between h-14 sm:h-[60px] site-container mx-auto px-4 sm:px-6 py-2.5 border-transparent border-[0.5px] transition-all duration-300 rounded-2xl"
+  >
+    <!-- Logo -->
+    <div class="flex-shrink-0 z-50">
+      <a href={isZh ? "/" : "/"} class="h-10 text-base group relative z-30 flex items-center aspect-square">
+        <img src="/assets/tools/logo/mrguo.png" alt="Mr. Guo Logo" class="w-10 h-10 rounded-full" />
+      </a>
+    </div>
+
+    <!-- Mobile Menu Background Overlay -->
+    <div id="mobileMenuBackground" class="fixed inset-0 z-20 hidden w-screen h-screen duration-300 ease-out bg-white/90 backdrop-blur-sm dark:bg-neutral-950/90"></div>
+
+    <!-- Navigation -->
+    <nav class="relative z-30 flex flex-row-reverse justify-start w-full text-sm sm:justify-end text-neutral-500 dark:text-neutral-400 sm:flex-row sm:items-center">
+      <!-- Mobile Menu Toggle Buttons -->
+      <div class="flex items-center gap-2 sm:hidden">
+        <!-- Dark Mode Toggle (Mobile) -->
+        <div id="darkToggleMobile" class="flex items-center justify-center w-10 h-10 cursor-pointer rounded-full bg-gradient-to-b from-white to-[#edeefa] border-[0.5px] border-[#f3f3ff] dark:from-neutral-800 dark:to-neutral-600 dark:border-neutral-600 transition-transform duration-200 active:scale-95">
+          <div class="flex justify-center items-center w-6 h-6 relative overflow-hidden rounded-full bg-gradient-to-b from-[#85a6ff] to-[#2d6dc3] border-[0.5px] border-[#7fa1ff]" style="box-shadow: 0px 2px 3px 0 rgba(55,52,209,0.21);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-medium absolute hidden text-white w-4 h-4 mobile-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v1"></path><path d="M12 20v1"></path><path d="M3 12h1"></path><path d="M20 12h1"></path><path d="m18.364 5.636-.707.707"></path><path d="m6.343 17.657-.707.707"></path><path d="m5.636 5.636.707.707"></path><path d="m17.657 17.657.707.707"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon absolute hidden text-white w-4 h-4 mobile-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+          </div>
+        </div>
+        <!-- Hamburger -->
+        <div id="openMenu" class="flex items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90">
+          <svg class="w-7 h-7 text-neutral-700 dark:text-neutral-200" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 8h16M4 16h16"></path></svg>
+        </div>
+        <!-- Close -->
+        <div id="closeMenu" class="hidden items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90">
+          <svg class="w-6 h-6 text-neutral-600 dark:text-neutral-200" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+        </div>
+      </div>
+
+      <!-- Menu Items -->
+      <div id="menu" class="fixed top-[68px] sm:top-0 left-3 right-3 sm:left-0 sm:right-0 ease-out duration-300 z-40 flex-col items-center justify-start hidden w-auto h-auto text-sm pt-6 pb-5 sm:py-0 sm:relative sm:flex-row sm:flex">
+        <!-- Mobile background -->
+        <div class="absolute inset-0 top-0 right-0 block w-full h-full sm:hidden">
+          <div class="relative w-full h-full bg-white/95 border border-dashed border-neutral-300 dark:border-neutral-700 backdrop-blur-md rounded-2xl dark:bg-neutral-950/95 shadow-lg"></div>
+        </div>
+
+        <!-- Links -->
+        <div class="relative z-10 flex flex-col sm:flex-row items-center w-full sm:w-auto gap-1 sm:gap-0">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="relative flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 sm:px-3 md:px-4 font-medium tracking-wide text-center duration-200 ease-out rounded-lg sm:rounded-none text-neutral-700 dark:text-neutral-200 hover:text-primary sm:hover:bg-transparent dark:hover:text-white dark:hover:bg-neutral-800/50 sm:dark:hover:bg-transparent active:scale-[0.98] sm:active:scale-100 transition-all"
+            >
+              <span class="lang-zh">{link.labelZh}</span>
+              <span class="lang-en">{link.labelEn}</span>
+            </a>
+          ))}
+        </div>
+
+        <!-- Resume Button (Mobile) -->
+        <div class="relative z-10 w-full px-5 mt-3 sm:hidden">
+          <a href="javascript:void(0);" target="_self" class="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1.5 px-5 py-[12px] rounded-xl bg-btn-primary dark:bg-btn-primary-dark border-[0] shadow-[0px_2px_3px_0_rgba(0,0,0,0.1)] max-w-60 transition duration-400 ease-in-out hover:bg-btn-primary-hover dark:hover:bg-btn-primary-dark-hover hover:translate-y-[-2px] hover:shadow-[0px_6px_9px_0_rgba(61,99,171,0.15)] dark:shadow-[0px_6px_9px_0_rgba(0,0,0,0.2)] m-auto w-full justify-center resume-trigger">
+            <span class="flex gap-1 items-center justify-center text-sm font-medium text-center text-neutral-50">
+              Resume
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Desktop Actions -->
+      <div class="relative hidden sm:flex items-center gap-2 ml-4 lg:ml-6">
+        <!-- Resume Button (Desktop) -->
+        <a href="javascript:void(0);" target="_self" class="flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1.5 px-5 py-[12px] rounded-xl bg-btn-primary dark:bg-btn-primary-dark border-[0] shadow-[0px_2px_3px_0_rgba(0,0,0,0.1)] max-w-60 transition duration-400 ease-in-out hover:bg-btn-primary-hover dark:hover:bg-btn-primary-dark-hover hover:translate-y-[-2px] hover:shadow-[0px_6px_9px_0_rgba(61,99,171,0.15)] dark:shadow-[0px_6px_9px_0_rgba(0,0,0,0.2)] md:flex mx-1 resume-trigger">
+          <span class="flex gap-1 items-center justify-center text-sm font-medium text-center text-neutral-50">
+            Resume
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
+          </span>
+        </a>
+
+        <span class="separator-line hidden sm:inline-block bg-[rgba(183,202,255,0.5)] mt-[20px] -translate-y-1/2 w-px h-[20px]"></span>
+
+        <!-- Language Switcher (Desktop) -->
+        <div class="lang-switcher flex items-center gap-1 mx-1">
+          <a href={isZh ? (Astro.url.pathname === "/" ? "/?lang=en" : "/blog") : Astro.url.pathname} class="lang-en-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> EN </a>
+          <span class="text-neutral-400 dark:text-neutral-500">/</span>
+          <a href={isZh ? Astro.url.pathname : "/"} class="lang-zh-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> ZH </a>
+        </div>
+
+        <span class="separator-line hidden sm:inline-block bg-[rgba(183,202,255,0.5)] mt-[20px] -translate-y-1/2 w-px h-[20px]"></span>
+
+        <!-- Dark Mode Toggle (Desktop) -->
+        <div id="darkToggle" class="relative flex items-center h-9 px-2 gap-1.5 font-medium cursor-pointer rounded-full bg-gradient-to-b from-white to-[#edf1fa] border-[0.5px] border-[#f3f5ff] dark:from-neutral-800 dark:to-neutral-600 dark:border-neutral-600 transition-all duration-200 hover:shadow-md hover:scale-105 active:scale-95 mx-1">
+          <div class="flex justify-center items-center flex-shrink-0 w-6 h-6 relative overflow-hidden rounded-full bg-gradient-to-b from-[#85a6ff] to-[#2d6dc3] border-[0.5px] border-[#7fa1ff]" style="box-shadow: 0px 2px 3px 0 rgba(55,52,209,0.21);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="sun" class="lucide lucide-sun-medium absolute hidden text-white w-4 h-4"><circle cx="12" cy="12" r="4"></circle><path d="M12 3v1"></path><path d="M12 20v1"></path><path d="M3 12h1"></path><path d="M20 12h1"></path><path d="m18.364 5.636-.707.707"></path><path d="m6.343 17.657-.707.707"></path><path d="m5.636 5.636.707.707"></path><path d="m17.657 17.657.707.707"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="moon" class="lucide lucide-moon absolute hidden text-white w-4 h-4"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+          </div>
+          <span class="hidden sm:inline-block whitespace-nowrap">
+            <span id="dayText" class="flex-shrink-0 text-sm text-left text-[#6f6c8f] dark:text-neutral-400">{isZh ? "浅色" : "Light"}</span>
+            <span id="nightText" class="hidden flex-shrink-0 text-sm text-left text-[#6f6c8f] dark:text-neutral-400">{isZh ? "深色" : "Dark"}</span>
+          </span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Resume Request Modal -->
+<div id="resume-modal" class="resume-modal">
+  <div class="resume-modal-overlay"></div>
+  <div class="resume-modal-content">
+    <button type="button" class="resume-modal-close" aria-label="Close">&times;</button>
+    <div class="resume-modal-icon">📄</div>
+    <p class="resume-modal-title">Request My Resume</p>
+    <p class="resume-modal-text">Thank you for your interest! To receive my resume, please reach out to me through any of the following channels:</p>
+    <div class="resume-contact-methods">
+      <a href="mailto:xjzzxwork@gmail.com" class="resume-contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">xjzzxwork@gmail.com</div>
+        </div>
+      </a>
+      <button type="button" class="resume-contact-item resume-wechat-trigger" data-wechat-qr="/assets/social/social-wechat-public.jpg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 11c.8 0 1.5-.7 1.5-1.5S9.3 8 8.5 8 7 8.7 7 9.5 7.7 11 8.5 11zm7 0c.8 0 1.5-.7 1.5-1.5S16.3 8 15.5 8 14 8.7 14 9.5s.7 1.5 1.5 1.5zM12 2C6.5 2 2 6 2 11c0 1.9.6 3.6 1.6 5.1L2 22l6.2-2.6c1.1.4 2.3.6 3.8.6 5.5 0 10-4 10-9s-4.5-9-10-9z"></path></svg>
+        <div>
+          <div class="contact-label">WeChat</div>
+          <div class="contact-value">Click to view QR code</div>
+        </div>
+      </button>
+      <a href="https://x.com/gzzhangguo" target="_blank" rel="noopener noreferrer" class="resume-contact-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+        <div>
+          <div class="contact-label">Twitter/X</div>
+          <div class="contact-value">@gzzhangguo</div>
+        </div>
+      </a>
+    </div>
+    <p class="resume-modal-footer">I'll respond to your request as soon as possible!</p>
+  </div>
+</div>
+
+<!-- WeChat QR Code Modal -->
+<div id="wechat-qr-modal" class="wechat-modal">
+  <div class="wechat-modal-overlay"></div>
+  <div class="wechat-modal-content">
+    <button type="button" class="wechat-modal-close" aria-label="Close">&times;</button>
+    <img id="wechat-qr-image" src="" alt="WeChat QR Code" class="wechat-qr-image" />
+    <p class="wechat-qr-text">Scan to follow on WeChat</p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    // ===== Dark Mode Toggle =====
+    const darkToggle = document.getElementById("darkToggle");
+    const darkToggleMobile = document.getElementById("darkToggleMobile");
+
+    function updateDarkUI() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const sunIcons = document.querySelectorAll("#sun, .mobile-sun");
+      const moonIcons = document.querySelectorAll("#moon, .mobile-moon");
+
+      moonIcons.forEach((el) => el.classList.toggle("hidden", !isDark));
+      sunIcons.forEach((el) => el.classList.toggle("hidden", isDark));
+      document.getElementById("dayText")?.classList.toggle("hidden", isDark);
+      document.getElementById("nightText")?.classList.toggle("hidden", !isDark);
+    }
+
+    document.addEventListener("DOMContentLoaded", updateDarkUI);
+    const observer = new MutationObserver(updateDarkUI);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("dark_mode", isDark);
+      updateDarkUI();
+    }
+
+    if (darkToggle) {
+      darkToggle.addEventListener("click", toggleDarkMode);
+    }
+
+    if (darkToggleMobile) {
+      darkToggleMobile.addEventListener("click", toggleDarkMode);
+    }
+
+    // ===== Mobile Menu =====
+    const openMenu = document.getElementById("openMenu");
+    const closeMenu = document.getElementById("closeMenu");
+    const menu = document.getElementById("menu");
+    const mobileBg = document.getElementById("mobileMenuBackground");
+
+    function openMobileMenu() {
+      menu?.classList.remove("hidden");
+      mobileBg?.classList.remove("hidden");
+      openMenu?.classList.add("hidden");
+      closeMenu?.classList.remove("hidden");
+      closeMenu?.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileMenu() {
+      menu?.classList.add("hidden");
+      mobileBg?.classList.add("hidden");
+      closeMenu?.classList.add("hidden");
+      closeMenu?.classList.remove("flex");
+      openMenu?.classList.remove("hidden");
+      document.body.style.overflow = "";
+    }
+
+    openMenu?.addEventListener("click", openMobileMenu);
+    closeMenu?.addEventListener("click", closeMobileMenu);
+    mobileBg?.addEventListener("click", closeMobileMenu);
+
+    menu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 640) closeMobileMenu();
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 640) {
+        document.body.style.overflow = "";
+        if (menu?.classList.contains("hidden")) menu.classList.remove("hidden");
+      }
+    });
+
+    window.closeMobileMenu = closeMobileMenu;
+
+    // ===== Resume Modal =====
+    function initResumeModal() {
+      const modal = document.getElementById("resume-modal");
+      if (!modal) return;
+
+      const closeBtn = modal.querySelector(".resume-modal-close");
+      const overlay = modal.querySelector(".resume-modal-overlay");
+      const triggers = document.querySelectorAll(".resume-trigger");
+      const wechatTrigger = modal.querySelector(".resume-wechat-trigger");
+
+      triggers.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      closeBtn?.addEventListener("click", closeModal);
+      overlay?.addEventListener("click", closeModal);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+      });
+
+      wechatTrigger?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const qrModal = document.getElementById("wechat-qr-modal");
+        const qrImage = document.getElementById("wechat-qr-image");
+        const qrSrc = wechatTrigger.getAttribute("data-wechat-qr");
+        if (qrModal && qrImage && qrSrc) {
+          closeModal();
+          qrImage.src = qrSrc;
+          qrModal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+      });
+    }
+
+    // ===== WeChat QR Modal =====
+    function initWechatModal() {
+      const modal = document.getElementById("wechat-qr-modal");
+      if (!modal) return;
+
+      const closeBtn = modal.querySelector(".wechat-modal-close");
+      const overlay = modal.querySelector(".wechat-modal-overlay");
+
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      closeBtn?.addEventListener("click", closeModal);
+      overlay?.addEventListener("click", closeModal);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+      });
+
+      // Social WeChat triggers
+      document.querySelectorAll(".social-wechat-trigger").forEach((el) => {
+        el.addEventListener("click", (e) => {
+          e.preventDefault();
+          const qrSrc = el.getAttribute("data-wechat-qr");
+          const qrImage = document.getElementById("wechat-qr-image");
+          if (qrSrc && qrImage) {
+            qrImage.src = qrSrc;
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+    }
+
+    // ===== Header scroll effect =====
+    function initHeaderScroll() {
+      const header = document.getElementById("header");
+      const container = document.getElementById("site-container");
+      if (!header || !container) return;
+
+      function onScroll() {
+        if (window.scrollY > 40) {
+          container.classList.remove("border-transparent");
+          container.classList.add(
+            "bg-white/90",
+            "dark:bg-neutral-950/90",
+            "backdrop-blur-xl",
+            "shadow-sm",
+            "border-[rgba(183,202,255,0.3)]",
+            "dark:border-neutral-700/50"
+          );
+          container.classList.add("rounded-2xl");
+        } else {
+          container.classList.add("border-transparent");
+          container.classList.remove(
+            "bg-white/90",
+            "dark:bg-neutral-950/90",
+            "backdrop-blur-xl",
+            "shadow-sm",
+            "border-[rgba(183,202,255,0.3)]",
+            "dark:border-neutral-700/50"
+          );
+        }
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    }
+
+    // Init all
+    function initNavbar() {
+      initResumeModal();
+      initWechatModal();
+      initHeaderScroll();
+      updateDocumentLang();
+    }
+
+    function updateDocumentLang() {
+      var isEn = document.documentElement.getAttribute('data-lang') === 'en';
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (isEn) {
+        var titles = {
+          '/': 'Mr. Guo - AI Product Manager & Digital Marketing Expert',
+        };
+        var descs = {
+          '/': 'Welcome to my personal site. I\'m an AI Product Manager, indie developer, digital marketing expert, and also a musician.',
+        };
+        var path = location.pathname;
+        if (titles[path]) document.title = titles[path];
+        if (descs[path] && metaDesc) metaDesc.content = descs[path];
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initNavbar);
+    } else {
+      initNavbar();
+    }
+    document.addEventListener("astro:page-load", initNavbar);
+  })();
+</script>

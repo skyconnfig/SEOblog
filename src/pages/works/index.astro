@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import AnimatedText from "../../components/AnimatedText.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Footer from "../../components/Footer.astro";
+
+const projects = [
+  {
+    id: "redol-ai",
+    title: "Redol AI",
+    description: "AI Agent for Social Media Content Production",
+    videoSrc: "/assets/works/redol-ai.mp4",
+    poster: "/assets/works/redol-ai.webp",
+    url: "https://redol.ai",
+    tags: ["AI SaaS", "PM", "PLG", "AI Agent", "Indie Project"],
+    delay: "0",
+  },
+  {
+    id: "realibox",
+    title: "Realibox",
+    description: "3D + AI Agent SaaS for intelligent 3D asset production workflow, from mockup design to 3D configurators, animations, and scene rendering",
+    videoSrc: "/assets/works/realibox.mp4",
+    poster: "/assets/works/realibox.jpg",
+    url: "https://realibox.com",
+    tags: ["3D SaaS", "AI Agent", "Product Manager", "Global Operations"],
+    delay: "100",
+  },
+  {
+    id: "insmind",
+    title: "Insmind",
+    description: "AI-powered image editing SaaS platform, empowered 0-1 growth stage as PMF and SEM consultant",
+    videoSrc: "/assets/works/insmind.mp4",
+    poster: "/assets/works/insmind.jpg",
+    url: "https://insmind.com",
+    tags: ["AI Image", "AI Design", "PMF Consultant", "SEM Consultant"],
+    delay: "200",
+  },
+  {
+    id: "melogen-ai",
+    title: "Melogen AI",
+    description: "AI audio SaaS for musicians and music enthusiasts, developed as an indie project by a musician",
+    videoSrc: "/assets/works/melogenai.mp4",
+    poster: "/assets/works/melogenai.jpg",
+    url: "https://melogenai.com",
+    tags: ["AI Audio", "Music SaaS", "Indie Project", "Musician"],
+    delay: "300",
+  },
+  {
+    id: "plushthis",
+    title: "PlushThis",
+    description: "Alt-style plush toy brand e-commerce, empowered 0-1 growth as digital marketing consultant with full SEO and brand strategy",
+    videoSrc: "/assets/works/plushthis.mp4",
+    poster: "/assets/works/plushthis.jpg",
+    url: "https://plushthis.com",
+    tags: ["E-commerce", "Digital Marketing", "SEO Strategy", "Brand Consultant"],
+    delay: "400",
+  },
+];
+---
+
+<Layout title="My Projects - Mr. Guo" description="I've played multiple roles in these projects, from product manager and developer to digital marketing consultant, PMF advisor, and business strategy consultant." lang="en">
+  <Navbar lang="en" />
+
+  <section class="relative z-20 container mx-auto my-12 px-7 lg:px-0">
+    <div class="relative z-20 w-full mx-auto mt-16 mb-16 text-center">
+      <h2 class="text-4xl font-brand text-center tracking-normal text-primary sm:text-4xl lg:text-5xl">
+        <AnimatedText text="My Projects" as="div" duration="0.6" delay="0.2" stagger="0.08" />
+      </h2>
+      <div class="mt-3 text-sm leading-6 sm:mt-4 lg:mt-6 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg text-neutral-700 dark:text-neutral-300 max-w-full lg:max-w-2xl m-auto">
+        <AnimatedText text="I've played multiple roles in these projects, from product manager and developer to digital marketing consultant, PMF advisor, and business strategy consultant." as="div" duration="1" delay="0.6" stagger="0.03" />
+      </div>
+    </div>
+
+    <section class="py-8 md:py-8">
+      <div class="space-y-8 md:space-y-10">
+        {projects.map((project) => (
+          <ProjectCard
+            id={project.id}
+            title={project.title}
+            description={project.description}
+            videoSrc={project.videoSrc}
+            poster={project.poster}
+            url={project.url}
+            tags={project.tags}
+            delay={project.delay}
+          />
+        ))}
+      </div>
+    </section>
+  </section>
+
+  <Footer lang="en" />
+
+  <script>
+    import AOS from "aos";
+    import "aos/dist/aos.css";
+    AOS.init({ duration: 600, easing: "ease-out", once: true });
+  </script>
+</Layout>

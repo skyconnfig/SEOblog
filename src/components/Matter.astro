@@ -1,0 +1,15 @@
+---
+// Matter.js Physics Component - client-only
+---
+
+<div id="matter-container" class="relative w-full h-[400px] overflow-hidden rounded-none">
+  <div id="matter-canvas" class="absolute inset-0" />
+</div>
+
+<script>
+  import { initMatterPhysics } from "./MatterContainer";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    initMatterPhysics("matter-container", "matter-canvas");
+  });
+</script>

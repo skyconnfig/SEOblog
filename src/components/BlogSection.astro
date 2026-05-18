@@ -1,0 +1,99 @@
+---
+// Blog section preview (index page)
+// Shows latest posts from content collection
+---
+
+<section id="blog" class="relative px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <!-- Section Header -->
+    <div class="mb-16" data-aos="fade-up">
+      <span class="text-xs font-medium uppercase tracking-widest text-neutral-400">Blog</span>
+      <h2 class="mt-4 text-3xl md:text-4xl font-bold tracking-tight">最新文章</h2>
+      <p class="mt-3 text-neutral-500 dark:text-neutral-400 max-w-md">
+        关于 PLG 增长、AI 产品和开发的思考和经验
+      </p>
+    </div>
+
+    <!-- Blog Posts Grid -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Post 1 -->
+      <article class="group" data-aos="fade-up">
+        <a href="#" class="block space-y-4">
+          <div class="aspect-[16/10] rounded-2xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs text-neutral-400">
+              <time>2026 年 5 月</time>
+              <span>·</span>
+              <span>5 分钟阅读</span>
+            </div>
+            <h3 class="text-base font-semibold leading-snug group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+              PLG 增长策略：从产品激活到网络效应的完整指南
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">
+              深入探讨产品驱动增长的核心策略，以及如何在实际产品中落地...
+            </p>
+          </div>
+        </a>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="group" data-aos="fade-up" data-aos-delay="100">
+        <a href="#" class="block space-y-4">
+          <div class="aspect-[16/10] rounded-2xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs text-neutral-400">
+              <time>2026 年 4 月</time>
+              <span>·</span>
+              <span>8 分钟阅读</span>
+            </div>
+            <h3 class="text-base font-semibold leading-snug group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+              AI 产品经理指南：如何设计优秀的 LLM 应用体验
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">
+              LLM 应用的产品设计原则、Prompt 工程最佳实践和用户体验优化...
+            </p>
+          </div>
+        </a>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="group" data-aos="fade-up" data-aos-delay="200">
+        <a href="#" class="block space-y-4">
+          <div class="aspect-[16/10] rounded-2xl bg-neutral-100 dark:bg-neutral-800 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-neutral-200 to-neutral-300 dark:from-neutral-800 dark:to-neutral-700 group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2 text-xs text-neutral-400">
+              <time>2026 年 4 月</time>
+              <span>·</span>
+              <span>6 分钟阅读</span>
+            </div>
+            <h3 class="text-base font-semibold leading-snug group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+              独立开发者技术栈 2026：从 Astro 到 Vercel 的全栈实践
+            </h3>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">
+              个人项目的最新技术选型、工具链和工作流分享...
+            </p>
+          </div>
+        </a>
+      </article>
+    </div>
+
+    <!-- View all link -->
+    <div class="mt-12 text-center" data-aos="fade-up">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-neutral-200 dark:border-neutral-700 text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-all duration-200"
+      >
+        查看全部文章
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

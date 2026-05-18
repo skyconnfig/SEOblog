@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro cache
+.astro/
+
+# Playwright
+.playwright-mcp/
+
+# Screenshots and debug images
+*.png
+*.jpeg
+*.jpg
+!public/**/*.png
+!public/**/*.jpg
+!public/**/*.jpeg
+!src/**/*.png
+!src/**/*.jpg
+!src/**/*.jpeg
+
+# Debug/log files
+*.log
+mrguo-live-snapshot.yml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large video assets (host externally)
+public/assets/home/*.mp4
+public/assets/tools/dreamcore.mp4
+public/assets/tools/dreamcore.jpg
+
+# IDE - local settings only
+.idea/*.xml
+!.idea/vcs.xml

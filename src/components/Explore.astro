@@ -1,0 +1,115 @@
+---
+// Bento Grid Explore Section
+// Cards for different topics/themes
+const cards = [
+  {
+    title: "PLG 增长",
+    description: "产品驱动增长策略、案例与实践。从激活到推荐的完整增长飞轮。",
+    icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
+    gradient: "from-blue-500/10 to-cyan-500/10 dark:from-blue-500/5 dark:to-cyan-500/5",
+    size: "md",
+  },
+  {
+    title: "AI 产品",
+    description: "AI 产品设计、开发与落地。从 LLM 应用到 AI Agent 架构。",
+    icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    gradient: "from-purple-500/10 to-pink-500/10 dark:from-purple-500/5 dark:to-pink-500/5",
+    size: "sm",
+  },
+  {
+    title: "我的项目",
+    description: "开源项目、Side Projects 和实验性作品。",
+    icon: "M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z",
+    gradient: "from-amber-500/10 to-orange-500/10 dark:from-amber-500/5 dark:to-orange-500/5",
+    size: "sm",
+  },
+  {
+    title: "写作",
+    description: "关于技术、产品和成长的深度思考。每周更新。",
+    icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
+    gradient: "from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/5 dark:to-teal-500/5",
+    size: "lg",
+  },
+];
+---
+
+<section id="explore" class="relative px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-6xl">
+    <!-- Section Header -->
+    <div class="mb-16" data-aos="fade-up">
+      <span class="text-xs font-medium uppercase tracking-widest text-neutral-400">Explore</span>
+      <h2 class="mt-4 text-3xl md:text-4xl font-bold tracking-tight">探索</h2>
+      <p class="mt-3 text-neutral-500 dark:text-neutral-400 max-w-md">
+        关于增长、AI 产品和开发的全方位内容
+      </p>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+      <!-- Card 1: PLG增长 (spans 2 cols on md) -->
+      <div
+        class="md:col-span-2 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 hover:shadow-sm transition-all duration-300 group"
+        data-aos="fade-up"
+      >
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br {cards[0].gradient} flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d={cards[0].icon} />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">{cards[0].title}</h3>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-md">{cards[0].description}</p>
+        <div class="mt-6 flex items-center gap-1 text-sm text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+          <span>了解更多</span>
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Card 2: AI产品 -->
+      <div
+        class="p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 hover:shadow-sm transition-all duration-300 group"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br {cards[1].gradient} flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d={cards[1].icon} />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">{cards[1].title}</h3>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{cards[1].description}</p>
+      </div>
+
+      <!-- Card 3: 我的项目 -->
+      <div
+        class="p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 hover:shadow-sm transition-all duration-300 group"
+        data-aos="fade-up"
+        data-aos-delay="150"
+      >
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br {cards[2].gradient} flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d={cards[2].icon} />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">{cards[2].title}</h3>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed">{cards[2].description}</p>
+      </div>
+
+      <!-- Card 4: 写作 (spans 2 cols on md) -->
+      <div
+        class="md:col-span-2 p-8 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 hover:shadow-sm transition-all duration-300 group"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br {cards[3].gradient} flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-neutral-700 dark:text-neutral-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d={cards[3].icon} />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">{cards[3].title}</h3>
+        <p class="text-sm text-neutral-500 dark:text-neutral-400 leading-relaxed max-w-lg">{cards[3].description}</p>
+      </div>
+    </div>
+  </div>
+</section>

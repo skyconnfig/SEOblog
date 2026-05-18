@@ -1,0 +1,124 @@
+---
+import "../styles/global.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  lang?: "zh-CN" | "en";
+}
+
+const {
+  title,
+  description,
+  image = "/og.jpg",
+  canonical,
+  lang = "zh-CN",
+} = Astro.props;
+
+const site = "https://mrguo.life";
+const fullUrl = canonical ? new URL(canonical, site).href : Astro.url.href;
+const keywords = "果叔, Mr Guo, AI 产品经理, 数字营销, PLG 增长, 独立开发者, AI SaaS";
+const author = "Mr'Guo";
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={fullUrl} />
+    <meta property="og:image" content={new URL(image, site).href} />
+    <meta property="og:site_name" content={title} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, site).href} />
+    <meta name="twitter:site" content="zhangguo" />
+    <meta name="twitter:creator" content="zhangguo" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={fullUrl} />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: "果叔",
+      url: site,
+      description: "PLG增长信徒 / 独立开发者 / AI产品经理",
+      sameAs: [
+        "https://twitter.com/gzzhangguo",
+        "https://github.com/mrzhangguoguo",
+      ],
+    })}>
+    </script>
+
+    <!-- GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4Y3372442"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4Y3372442');
+    </script>
+
+    <!-- Dark mode init (runs before paint to prevent flash) -->
+    <script is:inline>
+      if (typeof Storage !== 'undefined') {
+        if (
+          localStorage.getItem('dark_mode') &&
+          localStorage.getItem('dark_mode') === 'true'
+        ) {
+          document.documentElement.classList.add('dark');
+        }
+      }
+    </script>
+
+    <!-- Language init (runs before paint to prevent flash) -->
+    <script is:inline>
+      (function() {
+        if (typeof URL === 'undefined' || typeof document === 'undefined') return;
+        try {
+          var params = new URLSearchParams(location.search);
+          if (params.get('lang') === 'en') {
+            document.documentElement.setAttribute('data-lang', 'en');
+            document.documentElement.setAttribute('lang', 'en');
+          }
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Grid pattern background SVG -->
+    <svg
+      aria-hidden="true"
+      class="pointer-events-none fixed top-[-20%] inset-0 -z-1 size-full h-[50%] fill-blue-500/50 stroke-blue-500/50 opacity-[.30]"
+      style="mask-image: linear-gradient(to bottom, #ffffffad, transparent); -webkit-mask-image: linear-gradient(to bottom, #ffffffad, transparent);"
+    >
+      <defs>
+        <pattern id="grid-pattern" width="12" height="12" patternUnits="userSpaceOnUse" x="-1" y="-1">
+          <path d="M.5 12V.5H12" fill="none" stroke-dasharray="0" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" stroke-width="0" fill="url(#grid-pattern)" />
+    </svg>
+
+    <slot />
+  </body>
+</html>

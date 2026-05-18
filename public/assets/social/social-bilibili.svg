@@ -1,0 +1,26 @@
+<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="18" y1="16" x2="126" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#56C9FF"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="44" y1="34" x2="112" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7F9FF" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#BBF7FF" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <rect width="144" height="144" rx="22" fill="url(#bg)"/>
+  <circle cx="114" cy="30" r="18" fill="#FDF2F8" fill-opacity="0.22"/>
+  <circle cx="36" cy="112" r="28" fill="#DBEAFE" fill-opacity="0.18"/>
+  <path d="M51 28L61 41" stroke="#E0F2FE" stroke-width="7" stroke-linecap="round"/>
+  <path d="M94 28L84 41" stroke="#E0F2FE" stroke-width="7" stroke-linecap="round"/>
+  <rect x="30" y="40" width="84" height="62" rx="18" fill="#0F172A" fill-opacity="0.18"/>
+  <rect x="34" y="44" width="76" height="54" rx="16" fill="#F8FDFF"/>
+  <rect x="44" y="56" width="56" height="30" rx="12" fill="#0EA5E9" fill-opacity="0.14"/>
+  <path d="M56 64V76" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/>
+  <path d="M88 64V76" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/>
+  <path d="M60 84C64 79.6 68.8 77.4 72 77.4C75.2 77.4 80 79.6 84 84" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/>
+  <rect x="26" y="104" width="92" height="18" rx="9" fill="#0F172A" fill-opacity="0.14"/>
+  <text x="72" y="117" text-anchor="middle" fill="#F8FDFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">BILIBILI</text>
+  <rect x="34" y="44" width="76" height="54" rx="16" stroke="url(#glow)" stroke-width="2"/>
+</svg>

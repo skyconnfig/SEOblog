@@ -1,0 +1,66 @@
+---
+interface Props {
+  text: string;
+  as?: "h1" | "h2" | "h3" | "p" | "div" | "span";
+  class?: string;
+  duration?: number;
+  delay?: number;
+  stagger?: number;
+}
+
+const {
+  text,
+  as: Tag = "h1",
+  class: className,
+  duration = 0.6,
+  delay = 0.2,
+  stagger = 0.08,
+} = Astro.props;
+
+// Split text into words, preserving spaces
+const words = text.split(" ").map((w, i) => ({
+  word: w,
+  index: i,
+}));
+---
+
+<Tag class:list={["animated-text", className]} data-duration={duration} data-delay={delay} data-stagger={stagger}>
+  {
+    words.map(({ word, index }) => (
+      <span class="word" style={{ display: "inline-block", willChange: "transform", transform: "translateY(10px)", opacity: "0", filter: "blur(10px)" }}>
+        {word}{index < words.length - 1 ? " " : ""}
+      </span>
+    ))
+  }
+</Tag>
+
+<script>
+  document.querySelectorAll(".animated-text").forEach((el) => {
+    const words = el.querySelectorAll(".word");
+    const duration = parseFloat(el.getAttribute("data-duration") || "0.6");
+    const delay = parseFloat(el.getAttribute("data-delay") || "0.2");
+    const stagger = parseFloat(el.getAttribute("data-stagger") || "0.08");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            words.forEach((word, i) => {
+              const wordEl = word;
+              setTimeout(() => {
+                wordEl.style.transition = `all ${duration}s ease-out`;
+                wordEl.style.transform = "translateY(0)";
+                wordEl.style.opacity = "1";
+                wordEl.style.filter = "blur(0px)";
+              }, delay * 1000 + i * stagger * 1000);
+            });
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+  });
+</script>
