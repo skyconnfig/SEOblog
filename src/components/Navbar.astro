@@ -96,9 +96,9 @@ const navLinks = [
 
         <!-- Language Switcher (Desktop) -->
         <div class="lang-switcher flex items-center gap-1 mx-1">
-          <a href={isZh ? (Astro.url.pathname === "/" ? "/?lang=en" : "/blog") : Astro.url.pathname} class="lang-en-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> EN </a>
+          <a href={Astro.url.pathname + "?lang=en"} class="lang-en-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> EN </a>
           <span class="text-neutral-400 dark:text-neutral-500">/</span>
-          <a href={isZh ? Astro.url.pathname : "/"} class="lang-zh-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> ZH </a>
+          <a href={Astro.url.pathname + "?lang=zh"} class="lang-zh-link px-1.5 py-0.5 text-sm rounded transition-colors duration-200 hover:text-neutral-700 dark:hover:text-neutral-200"> ZH </a>
         </div>
 
         <span class="separator-line hidden sm:inline-block bg-[rgba(183,202,255,0.5)] mt-[20px] -translate-y-1/2 w-px h-[20px]"></span>
@@ -377,6 +377,11 @@ const navLinks = [
         if (titles[path]) document.title = titles[path];
         if (descs[path] && metaDesc) metaDesc.content = descs[path];
       }
+      // Update Navbar dynamic text
+      var dayText = document.getElementById('dayText');
+      var nightText = document.getElementById('nightText');
+      if (dayText) dayText.textContent = isEn ? 'Light' : '浅色';
+      if (nightText) nightText.textContent = isEn ? 'Dark' : '深色';
     }
 
     if (document.readyState === "loading") {

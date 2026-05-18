@@ -1,0 +1,30 @@
+[
+  {
+    "title": "111",
+    "slug": "111",
+    "cover": "/assets/works/111/cover-1779107133740.png",
+    "tags": [
+      "111"
+    ],
+    "description": "111",
+    "siteUrl": "https://ai.lxs.best/",
+    "published": true,
+    "createdAt": "2026-05-18"
+  },
+  {
+    "slug": "redol-ai",
+    "title": "Redol AI",
+    "cover": "/assets/works/redol-ai/cover-1779108639931.png",
+    "tags": [
+      "AI SaaS",
+      "PM",
+      "PLG",
+      "AI Agent",
+      "Indie Project"
+    ],
+    "description": "AI Agent for Social Media Content Production",
+    "siteUrl": "https://redol.ai",
+    "published": true,
+    "createdAt": "2026-01-15"
+  }
+]

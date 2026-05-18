@@ -4,6 +4,7 @@ description: "深入探讨产品驱动增长的核心策略，以及如何在实
 date: 2026-05-15
 tags: ["PLG", "增长", "SaaS"]
 draft: false
+image: "/assets/blog/plg-growth-strategy/image-1779102717565.png"
 ---
 
 ## 什么是 PLG？
@@ -20,3 +21,6 @@ draft: false
 ## 实践建议
 
 好的 PLG 策略从产品体验开始。
+
+
+## 本期资源下载链接：

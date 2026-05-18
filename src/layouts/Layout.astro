@@ -95,10 +95,23 @@ const author = "LXSBest";
       (function() {
         if (typeof URL === 'undefined' || typeof document === 'undefined') return;
         try {
+          var lang = null;
           var params = new URLSearchParams(location.search);
-          if (params.get('lang') === 'en') {
+          if (params.get('lang') === 'en') lang = 'en';
+          else if (params.get('lang') === 'zh') lang = 'zh';
+
+          if (!lang) {
+            try { lang = localStorage.getItem('site_lang'); } catch(e) {}
+          }
+
+          if (lang === 'en') {
             document.documentElement.setAttribute('data-lang', 'en');
             document.documentElement.setAttribute('lang', 'en');
+            try { localStorage.setItem('site_lang', 'en'); } catch(e) {}
+          } else {
+            document.documentElement.removeAttribute('data-lang');
+            document.documentElement.setAttribute('lang', 'zh-CN');
+            try { localStorage.setItem('site_lang', 'zh'); } catch(e) {}
           }
         } catch(e) {}
       })();

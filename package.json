@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "publish": "node scripts/publish.js",
     "dev-server": "node scripts/dev-server.js",
-    "admin": "node scripts/admin-server.js"
+    "admin": "node scripts/admin-server.js",
+    "start": "node scripts/start.js"
   },
   "dependencies": {
     "astro": "^5.7.0",

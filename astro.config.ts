@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://example.com",
+  server: { port: 4326 },
   integrations: [mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
